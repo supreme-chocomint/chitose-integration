@@ -6,7 +6,7 @@
 // @version     1.0.0
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
-// @include     https://anilist.co/staff/*
+// @include     https://anilist.co/*
 // @include     https://www.animenewsnetwork.com/encyclopedia/people.php?id=*
 // @include     https://www.anime-planet.com/people/*
 // @grant       GM_addStyle
@@ -26,19 +26,27 @@ function doMAL() {
 }
 
 function doAniList() {
-    // Get numbers from URL, which is the ID used on Chitose.
-    let id = url.match(/(\d+)/)[1]
 
     // AniList has a loading screen, so need to wait for it.
-    // https://stackoverflow.com/a/16726669 
+    // It also only dispatches DOMContentLoaded once (I guess), so need to start watching as
+    // soon as you enter site, and keep watching indefinitely.
+    // https://stackoverflow.com/a/16726669
     let observer = new MutationObserver(function(mutations, observer) {
-        let done = false
         for (let mutation of mutations) {
 
+            // Only proceed if required nodes added, links don't already exist, AND on a staff page.
             if (!mutation.addedNodes) return
             let header = document.querySelector(".header")
             let name = document.querySelector("h1").textContent
-            if (header == null || name == null) return
+            let existingLinks = document.querySelector(".chitose_link")
+            if (header == null
+                || name == null
+                || existingLinks != null
+                || !window.location.href.includes("staff")
+               ) return
+
+            // Get numbers from URL, which is the ID used on Chitose
+            let id = window.location.href.match(/(\d+)/)[1]
 
             appendSearchLink(name, header.querySelector(".content"))
             appendProfileLink(id, header.querySelector(".content"))
@@ -48,10 +56,8 @@ function doAniList() {
                     line-height: 1.5;
                 }
             `)
-            done = true
             break
         }
-        if (done) this.disconnect()
     })
     observer.observe(document.body, {childList: true, subtree: true})
 }
@@ -75,7 +81,7 @@ function appendSearchLink(searchReference, container) {
     let searchLink = document.createElement("a")
     searchLink.classList.add("chitose_link")
     searchLink.innerHTML = "Search on Chitose<br />"
-    searchLink.href = "https://themightyhotel.bitbucket.io/chi-beta/#" + searchReference
+    searchLink.href = "https://themightyhotel.bitbucket.io/chi-beta/#" + searchReference.trim()
     container.appendChild(searchLink)
 }
 
@@ -83,6 +89,6 @@ function appendProfileLink(id, container) {
     let profileLink = document.createElement("a")
     profileLink.classList.add("chitose_link")
     profileLink.innerHTML = "View Profile on Chitose<br />"
-    profileLink.href = "https://themightyhotel.bitbucket.io/chi-beta/#" + id
+    profileLink.href = "https://themightyhotel.bitbucket.io/chi-beta/#" + id.trim()
     container.appendChild(profileLink)
 }
