@@ -3,14 +3,13 @@
 // @description Adds quick links to https://themightyhotel.bitbucket.io/chi on MAL, AniList, ANN, and AP.
 // @author      themightyhotel
 // @website     https://bitbucket.org/themightyhotel/chi-integration
-// @version     1.0.2
+// @version     1.0.3
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
 // @include     https://www.animenewsnetwork.com/encyclopedia/people.php?id=*
 // @include     https://www.anime-planet.com/people/*
 // @grant       GM_addStyle
-// @run-at      document-idle
 // ==/UserScript==
 
 var url = window.location.href
@@ -59,7 +58,11 @@ function doAniList() {
             break
         }
     })
-    observer.observe(document.body, {childList: true, subtree: true})
+
+    // Observing sometimes doesn't fire when page loading in background and set to document.body 
+    // + childList/subtree options, so bandaid the issue by casting a wide net.
+    // If links missing after load, they will be added on scroll or on mouse click.
+    observer.observe(document, {childList: true, characterData: true, attributes: true, subtree: true})
 }
 
 function doANN() {
