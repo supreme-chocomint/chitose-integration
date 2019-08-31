@@ -3,7 +3,7 @@
 // @description Adds quick links to https://themightyhotel.bitbucket.io/chi on MAL, AniList, ANN, and AP.
 // @author      themightyhotel
 // @website     https://bitbucket.org/themightyhotel/chi-integration
-// @version     1.0.3
+// @version     1.0.4
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
@@ -13,6 +13,7 @@
 // ==/UserScript==
 
 var url = window.location.href
+var chiRoot = "https://themightyhotel.bitbucket.io/chi/#"
 
 if (url.includes("myanimelist")) doMAL()
 else if (url.includes("anilist")) doAniList()
@@ -84,7 +85,7 @@ function appendSearchLink(searchReference, container) {
     let searchLink = document.createElement("a")
     searchLink.classList.add("chitose_link")
     searchLink.innerHTML = "Search on Chitose<br />"
-    searchLink.href = "https://themightyhotel.bitbucket.io/chi-beta/#" + searchReference.trim()
+    searchLink.href = chiRoot + searchReference.trim()
     container.appendChild(searchLink)
 }
 
@@ -92,6 +93,6 @@ function appendProfileLink(id, container) {
     let profileLink = document.createElement("a")
     profileLink.classList.add("chitose_link")
     profileLink.innerHTML = "View Profile on Chitose<br />"
-    profileLink.href = "https://themightyhotel.bitbucket.io/chi-beta/#" + id.trim()
+    profileLink.href = chiRoot + id.trim()
     container.appendChild(profileLink)
 }
