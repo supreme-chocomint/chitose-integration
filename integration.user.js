@@ -3,7 +3,7 @@
 // @description Adds quick links to https://themightyhotel.bitbucket.io/chi on MAL, AniList, ANN, and AP.
 // @author      themightyhotel
 // @website     https://bitbucket.org/themightyhotel/chi-integration
-// @version     1.0.5
+// @version     1.0.6
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
@@ -21,7 +21,7 @@ else if (url.includes("animenewsnetwork")) doANN()
 else if (url.includes("anime-planet")) doAP()
 
 function doMAL() {
-    let name = document.querySelector(".h1").textContent
+    let name = document.querySelector(".h1-title").textContent
     appendSearchLink(name, document.querySelector("#profileRows"))
 }
 
