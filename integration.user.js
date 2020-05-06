@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name        Site Integration for Chitose
-// @description Adds quick links to https://themightyhotel.bitbucket.io/chi on MAL, AniList, ANN, and AP.
+// @name        Site Integration for chi歳
+// @description Adds quick links to https://supreme-chocomint.github.io/chitose/ on MAL, AniList, ANN, and AP.
 // @author      themightyhotel
-// @website     https://bitbucket.org/themightyhotel/chi-integration
-// @version     1.0.6
+// @website     https://github.com/supreme-chocomint/chitose-integration
+// @version     1.0.7
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
@@ -13,7 +13,7 @@
 // ==/UserScript==
 
 var url = window.location.href
-var chiRoot = "https://themightyhotel.bitbucket.io/chi/#"
+var chiRoot = "https://supreme-chocomint.github.io/chitose/#"
 
 if (url.includes("myanimelist")) doMAL()
 else if (url.includes("anilist")) doAniList()
@@ -84,7 +84,7 @@ function doAP() {
 function appendSearchLink(searchReference, container) {
     let searchLink = document.createElement("a")
     searchLink.classList.add("chitose_link")
-    searchLink.innerHTML = "Search on Chitose<br />"
+    searchLink.innerHTML = "Search on chi歳<br />"
     searchLink.href = chiRoot + searchReference.trim()
     container.appendChild(searchLink)
 }
@@ -92,7 +92,7 @@ function appendSearchLink(searchReference, container) {
 function appendProfileLink(id, container) {
     let profileLink = document.createElement("a")
     profileLink.classList.add("chitose_link")
-    profileLink.innerHTML = "View Profile on Chitose<br />"
+    profileLink.innerHTML = "View Profile on chi歳<br />"
     profileLink.href = chiRoot + id.trim()
     container.appendChild(profileLink)
 }
