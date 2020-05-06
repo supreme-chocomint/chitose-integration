@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name        Site Integration for chi歳
 // @description Adds quick links to https://supreme-chocomint.github.io/chitose/ on MAL, AniList, ANN, and AP.
-// @author      themightyhotel
+// @author      supreme-chocomint
 // @website     https://github.com/supreme-chocomint/chitose-integration
 // @downloadURL https://github.com/supreme-chocomint/chitose-integration/raw/master/integration.user.js
-// @version     1.0.8
+// @version     1.0.9
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
