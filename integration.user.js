@@ -3,7 +3,8 @@
 // @description Adds quick links to https://supreme-chocomint.github.io/chitose/ on MAL, AniList, ANN, and AP.
 // @author      themightyhotel
 // @website     https://github.com/supreme-chocomint/chitose-integration
-// @version     1.0.7
+// @downloadURL https://github.com/supreme-chocomint/chitose-integration/raw/master/integration.user.js
+// @version     1.0.8
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
