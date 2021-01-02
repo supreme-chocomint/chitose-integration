@@ -4,13 +4,12 @@
 // @author      supreme-chocomint
 // @website     https://github.com/supreme-chocomint/chitose-integration
 // @downloadURL https://github.com/supreme-chocomint/chitose-integration/raw/master/integration.user.js
-// @version     1.0.9
+// @version     1.0.10
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
 // @include     https://www.animenewsnetwork.com/encyclopedia/people.php?id=*
 // @include     https://www.anime-planet.com/people/*
-// @grant       GM_addStyle
 // ==/UserScript==
 
 var url = window.location.href
@@ -37,11 +36,9 @@ function doAniList() {
 
             // Only proceed if required nodes added, links don't already exist, AND on a staff page.
             if (!mutation.addedNodes) return
-            let header = document.querySelector(".header")
-            let name = document.querySelector("h1").textContent
+            let descriptionBox = document.querySelector(".description")
             let existingLinks = document.querySelector(".chitose_link")
-            if (header == null
-                || name == null
+            if (descriptionBox == null
                 || existingLinks != null
                 || !window.location.href.includes("anilist.co/staff/")
                ) return
@@ -49,19 +46,14 @@ function doAniList() {
             // Get numbers from URL, which is the ID used on Chitose
             let id = window.location.href.match(/(\d+)/)[1]
 
-            appendSearchLink(name, header.querySelector(".content"))
-            appendProfileLink(id, header.querySelector(".content"))
-            GM_addStyle (`
-                .chitose_link {
-                    font-size: 1.4rem;
-                    line-height: 1.5;
-                }
-            `)
+            let container = document.createElement("span")
+            appendProfileLink(id, container)
+            descriptionBox.prepend(container)
             break
         }
     })
 
-    // Observing sometimes doesn't fire when page loading in background and set to document.body 
+    // Observing sometimes doesn't fire when page loading in background and set to document.body
     // + childList/subtree options, so bandaid the issue by casting a wide net.
     // If links missing after load, they will be added on scroll or on mouse click.
     observer.observe(document, {childList: true, characterData: true, attributes: true, subtree: true})

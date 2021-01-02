@@ -13,6 +13,7 @@ See [the main web app repo](https://github.com/supreme-chocomint/chitose) for mo
 - If the script is not automatically detected for some reason: copy the code from [here](https://github.com/supreme-chocomint/chitose-integration/blob/master/integration.user.js), open the Tampermonkey dashboard, click the "+" button in the top right tabs, delete the default new code, paste the copied code, and save
 
 ## Usage
-- On AniList and AP, the links are underneath the bios/descriptions
+- On AniList, the links are above the bios/descriptions
+- On AP, the links are underneath the bios/descriptions
 - On MAL, the link is in the left column underneath the profile picture
 - On ANN, the link is underneath the name at the top of the page
