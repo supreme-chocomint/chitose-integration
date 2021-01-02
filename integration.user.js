@@ -4,7 +4,8 @@
 // @author      supreme-chocomint
 // @website     https://github.com/supreme-chocomint/chitose-integration
 // @downloadURL https://github.com/supreme-chocomint/chitose-integration/raw/master/integration.user.js
-// @version     1.0.10
+// @updateURL   https://github.com/supreme-chocomint/chitose-integration/raw/master/integration.user.js
+// @version     1.0.11
 // @include     https://myanimelist.net/people/*
 // @include     https://myanimelist.net/people.php?id=*
 // @include     https://anilist.co/*
